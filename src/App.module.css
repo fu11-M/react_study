@@ -1,0 +1,9 @@
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    box-sizing: border-box; /* 이 줄을 추가하여 크기 계산을 정확히 */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
