@@ -1,18 +1,19 @@
 // Day.js
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import dummy from "../db/data.json";
 import Word from "./Word";
+import useFetch from "../Hooks/useFetch";
 
 export default function Day() {
   const { day } = useParams(); // URL의 day 가져오기
-  const wordList = dummy.words.filter(word => word.day === Number(day)); // day에 맞는 데이터 필터링
-
+  const words = useFetch(`http://localhost:3001/words?day=${day}`)
   return (
     <>
       <h2>Day {day}</h2>
+      {words.length === 0 && <span>Loading...</span>}
       <table>
         <tbody>
-          {wordList.map(word => (
+          {words.map(word => (
             <Word word = {word} key={word.id}></Word>
           ))}
         </tbody>
